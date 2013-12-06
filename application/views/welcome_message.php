@@ -2,13 +2,20 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Welcome to CodeIgniter</title>
+	<title>Test for database</title>
 
 	<style type="text/css">
 
 	::selection{ background-color: #E13300; color: white; }
 	::moz-selection{ background-color: #E13300; color: white; }
 	::webkit-selection{ background-color: #E13300; color: white; }
+
+	/*head{
+		background-color: #f43;
+		margin: 40px;
+		font: 13px/20px normal Helvetica, Arial, sans-serif;
+		color: #4F5155;
+	}*/
 
 	body {
 		background-color: #fff;
@@ -67,19 +74,20 @@
 <body>
 
 <div id="container">
-	<h1>Welcome to CodeIgniter!</h1>
+	<h1>Test for database</h1>
 
 	<div id="body">
 
 		<p>I haven't wrote website for a long time</p>
 
-		<p>If you would like to edit this page you'll find it located at:</p>
-		<code>application/views/welcome_message.php</code>
-
-		<p>The corresponding controller for this page is found at:</p>
-		<code>application/controllers/welcome.php</code>
-
-		<p>If you are exploring CodeIgniter for the very first time, you should start by reading the </p>
+		<p>The client_name&client_num write in the block.</p>
+		<code>
+			<?php
+				foreach ($client as $row) 
+				 	echo $row['client_name'].'	'.$row['client_id'].'<br/>';
+			?>
+		</code>
+		
 	</div>
 
 	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
