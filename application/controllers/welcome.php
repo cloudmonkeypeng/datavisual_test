@@ -29,6 +29,14 @@ class Welcome extends CI_Controller {
 
 		$this->db->close();
 	}
+
+
+	public function force_collapsible(){
+		
+		echo "test"; 
+
+		$this->load->view('force_collapsible');
+	}
 }
 
 /* End of file welcome.php */
