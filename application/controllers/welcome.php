@@ -32,8 +32,6 @@ class Welcome extends CI_Controller {
 
 
 	public function force_collapsible(){
-		
-		echo "test"; 
 
 		$this->load->view('force_collapsible');
 	}

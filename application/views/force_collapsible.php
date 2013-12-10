@@ -3,12 +3,12 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-    <link type="text/css" rel="stylesheet" href="force_collapsible/style.css"/>
+    <link type="text/css" rel="stylesheet" href="<?php echo views_path().'/force_collapsible/style.css'?>"/>
     <style type="text/css">
 
 circle.node {
   cursor: pointer;
-  stroke: #000;
+  stroke: #000000;
   stroke-width: .5px;
 }
 
@@ -21,13 +21,9 @@ line.link {
     </style>
   </head>
   <body>
-    <h2>
-      Flare code size<br>
-      force-directed graph
-    </h2>
-    <script type="text/javascript" src="d3/d3.js"></script>
-    <script type="text/javascript" src="d3/d3.geom.js"></script>
-    <script type="text/javascript" src="d3/d3.layout.js"></script>
+    <script type="text/javascript" src="<?php echo views_path().'/force_collapsible/d3/d3.js'?>"></script>
+    <script type="text/javascript" src="<?php echo views_path().'/force_collapsible/d3/d3.geom.js'?>"></script>
+    <script type="text/javascript" src="<?php echo views_path().'/force_collapsible/d3/d3.layout.js'?>"></script>
     <script type="text/javascript">
 
 var w = 1280,
@@ -46,7 +42,7 @@ var vis = d3.select("body").append("svg:svg")
     .attr("width", w)
     .attr("height", h);
 
-d3.json("force_collapsible/flare.json", function(json) {
+d3.json("<?php echo views_path().'/force_collapsible/flare.json'?>", function(json) {
   root = json;
   root.fixed = true;
   root.x = w / 2;
