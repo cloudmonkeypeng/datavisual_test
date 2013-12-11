@@ -35,6 +35,24 @@ class Welcome extends CI_Controller {
 
 		$this->load->view('force_collapsible');
 	}
+
+
+	public function pie_chart(){
+
+		$this->load->database();
+
+		$this->load->model('guarantee_circle');
+
+		$client_amount = $this->guarantee_circle->get_each_client_amount();
+
+		$data['data_array'] = '';
+
+		foreach ($client_amount as $row) 
+			$data['data_array'] = $data['data_array'].'{client_name:"'.$row['client_name']
+			.'",amount:'.$row['amount'].'},';
+
+		$this->load->view('pie_chart',$data);
+	}
 }
 
 /* End of file welcome.php */

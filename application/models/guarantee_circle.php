@@ -16,4 +16,16 @@ class guarantee_circle extends CI_Model{
 		return $query->result_array();
     }
 
+
+    public function get_each_client_amount(){
+
+        $this->db->select('client_name');
+        $this->db->select_sum('amount');
+        $this->db->group_by('client_name');
+        $query =  $this->db->get('guarantee_circle');
+
+        return $query->result_array();
+
+    }
+
 }
