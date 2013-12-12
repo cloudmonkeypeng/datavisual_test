@@ -53,6 +53,12 @@ class Welcome extends CI_Controller {
 
 		$this->load->view('pie_chart',$data);
 	}
+
+
+	public function d3_test_1(){
+
+		$this->load->view('d3_test_1');
+	}
 }
 
 /* End of file welcome.php */

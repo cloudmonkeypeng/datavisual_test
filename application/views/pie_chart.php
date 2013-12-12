@@ -36,9 +36,9 @@ var svg = d3.select("body").append("svg")
   .append("g")
     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-data.forEach(function(d) {
+ /*data.forEach(function(d) {
     d.amount = +d.amount;
-  });
+  });*/
 
   var g = svg.selectAll(".arc")
       .data(pie(data))
