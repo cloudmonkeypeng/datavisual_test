@@ -55,9 +55,19 @@ class Welcome extends CI_Controller {
 	}
 
 
-	public function d3_test_1(){
+	public function hello_world(){
 
-		$this->load->view('d3_test_1');
+		$this->load->view('hello_world');
+	}
+
+	public function bar_graph(){
+
+		$this->load->view('bar_graph');
+	}
+
+	public function circle(){
+
+		$this->load->view('circle');
 	}
 }
 

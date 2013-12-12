@@ -22,13 +22,18 @@ var width = 500,
 var color = d3.scale.ordinal()
     .range([ "#7b6888", "#6b486b", "#a05d56", "#d0743c","#98abc5", "#8a89a6","#ff8c00"]);
 
-var arc = d3.svg.arc()
+var arc = d3.svg.arc()        //arc是什么？
     .outerRadius(radius - 10)
     .innerRadius(0);
 
 var pie = d3.layout.pie()
     .sort(null)
     .value(function(d) { return d.amount; });
+
+///输出json代码举例
+d3.select("body")
+      .append("h1")
+      .text('<?php echo $data_array?>');
 
 var svg = d3.select("body").append("svg")
 	.attr("width", width)
@@ -41,7 +46,7 @@ var svg = d3.select("body").append("svg")
   });*/
 
   var g = svg.selectAll(".arc")
-      .data(pie(data))
+      .data(pie(data))     
     .enter().append("g")
       .attr("class", "arc");
 
