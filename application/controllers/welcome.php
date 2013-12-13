@@ -69,6 +69,11 @@ class Welcome extends CI_Controller {
 
 		$this->load->view('circle');
 	}
+
+	public function ox(){
+
+		$this->load->view('ox');
+	}
 }
 
 /* End of file welcome.php */

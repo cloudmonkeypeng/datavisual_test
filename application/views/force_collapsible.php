@@ -107,9 +107,12 @@ function tick() {
       .attr("cy", function(d) { return d.y; });
 }
 
+
+//黑色定位不可动节点
+
 // Color leaf nodes orange, and packages white or blue.
 function color(d) {
-  return d._children ? "#3182bd" : d.children ? "#c6dbef" : "#fd8d3c";
+  return d._children ? "yellow" : d.children ? "red" : "#fd8d3c";
 }
 
 // Toggle children on click.
