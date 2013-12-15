@@ -74,6 +74,11 @@ class Welcome extends CI_Controller {
 
 		$this->load->view('ox');
 	}
+
+	public function chord_diagram(){
+
+		$this->load->view('chord_diagram');
+	}
 }
 
 /* End of file welcome.php */
