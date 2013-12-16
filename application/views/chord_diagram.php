@@ -19,12 +19,12 @@ body {
 </script>
 <script>
 
-// From http://mkweb.bcgsc.ca/circos/guide/tables/
 var matrix = [
-  [11975,  5871, 8916, 2868],
-  [ 1951, 10048, 2060, 6171],
-  [ 8010, 16145, 8090, 8045],
-  [ 1013,   990,  940, 6907]
+  [0  ,220,0  ,410,140],
+  [220,0  ,330,210,70],
+  [0  ,330,0  ,40,0],
+  [410,210,40,0,150],
+  [140,70,0,150,0]
 ];
 
 var chord = d3.layout.chord()
@@ -38,7 +38,7 @@ var chord = d3.layout.chord()
 
 var fill = d3.scale.ordinal()
     .domain(d3.range(4))
-    .range(["#000000", "#FFDD89", "#957244", "#F26223"]);
+    .range(["#000000", "#FFDD89", "#957244", "#F26223","yellow"]);
 
 var svg = d3.select("body").append("svg")
     .attr("width", width)

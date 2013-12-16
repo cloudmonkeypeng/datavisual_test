@@ -77,6 +77,11 @@ class Welcome extends CI_Controller {
 
 	public function chord_diagram(){
 
+		$this->load->database();
+
+		$this->load->model('guarantee_circle');
+
+
 		$this->load->view('chord_diagram');
 	}
 }
