@@ -4,9 +4,6 @@
 	<meta charset="utf-8">
 	<title>Force-Directed Graph</title>
 	<style>
-	.link {
-	  stroke: #000;
-	}
 
 	.nodetext {
     font: 12px sans-serif;
@@ -56,68 +53,124 @@ var force = d3.layout.force()
     .nodes(graph.nodes)
     .links(graph.links)
     .size([width, height])
-    .charge(-800)
+    .charge(-1800)
     .on("tick", tick)
     .start();
+
+ //添加箭头图标
+
+svg.append("defs")
+	.append("marker")
+	.attr("id","idArrow")
+	.attr("viewBox","0 0 20 20")
+	.attr("refX","0")
+	.attr("refY","10")
+	.attr("markerUnits","strokeWidth")
+	.attr("markerWidth","3")   //3
+	.attr("markerHeight","10")	//10
+	.attr("orient","auto")
+	.append("path")
+	.attr("d","M 0 0 L 20 10 L 0 20 z")
+	.attr("fill","black")
+	.attr("stroke","black");
+
 
 var link = svg.selectAll(".link")
    .data(graph.links)
  .enter().append("line")
-   .attr("class", "link");
+ 	.attr("stroke","black")
+ 	.attr("stroke-width","2px")
+ 	.attr("marker-end","url(#idArrow)");
 
 var g = svg.selectAll(".node")
    .data(graph.nodes)
  .enter().append("g");
 
 
- var node = g.append("image")
+var node = g.append("image")
  .attr("xlink:href","<?php echo views_path().'/icons/male.png'?>")
   .attr("width", "32px")
   .attr("height", "32px");
 
-  var text = g.append("text")
+var text = g.append("text")
   		.attr("class","nodetext")
   		.text(function(d) {return "张某";});
 
+var tempWidth,tempHeight,atan;
 
-
- /*append("circle")
-   .attr("class", "node") 
-   .attr("r", 4.5);
-
-/* var pic = svg.append('image')
- 			.attr("href","http://ww2.sinaimg.cn/large/412e82dbjw1dsbny7igx2j.jpg")
- 			.attr("x", "-32px")
-      .attr("y", "-32px")
-      .attr("width", "64px")
-      .attr("height", "64px");*/
-
- /*var g = svg.selectAll("g")
- 		.data(graph.nodes)
- 		.enter()
- 		.attr("class","node");
-
-/* g.append("svg:image")
- .attr("class","circle")
- .attr("href","http://ww2.sinaimg.cn/large/412e82dbjw1dsbny7igx2j.jpg")
- .attr("x", "-32px")
- .attr("y", "-32px")
- .attr("width", "64px")
- .attr("height", "64px");*/
+// 算法需改进   应该可以改进的！！！   必须可以改进！
 
 function tick() {
-  link.attr("x1", function(d) { return d.source.x; })
-      .attr("y1", function(d) { return d.source.y; })
-      .attr("x2", function(d) { return d.target.x; })
-      .attr("y2", function(d) { return d.target.y; });
 
-  node.attr("x", function(d) { return d.x-16; })
+	link.attr("x1", function(d) { 
+
+		atan = Math.abs((d.source.y-d.target.y)/(d.source.x-d.target.x));
+
+		if (atan>1){
+			tempWidth = 20/atan;
+		}else{
+			tempWidth =20;
+		}; 
+
+		if (d.source.x>d.target.x) 
+			return d.source.x - tempWidth;
+
+		return d.source.x + tempWidth; 
+	})
+      .attr("y1", function(d) { 
+
+      	atan = Math.abs((d.source.y-d.target.y)/(d.source.x-d.target.x));
+
+		if (atan>1) 
+		{
+			tempHeight = 20;
+		}else{
+			tempHeight =20*atan;
+		}; 
+
+		if (d.source.y>d.target.y) 
+			return d.source.y - tempHeight;
+
+      	return d.source.y + tempHeight; 
+      })
+      .attr("x2", function(d) { 
+
+		atan = Math.abs((d.source.y-d.target.y)/(d.source.x-d.target.x));
+
+		if (atan>1) 
+		{
+			tempWidth = 20/atan;
+		}else{
+			tempWidth =20;
+		}; 
+
+		if (d.source.x>d.target.x) 
+			return d.target.x + tempWidth;
+      	return d.target.x - tempWidth; 
+      })
+      .attr("y2", function(d) { 
+
+      	atan = Math.abs((d.source.y-d.target.y)/(d.source.x-d.target.x));
+
+		if (atan>1) 
+		{
+			tempHeight = 20;
+		}else{
+			tempHeight =20*atan;
+		}; 
+
+		if (d.source.y>d.target.y) 
+			return d.target.y + tempHeight;
+
+      	return d.target.y - tempHeight; 
+
+      });
+
+    node.attr("x", function(d) { return d.x-16; })
       .attr("y", function(d) { return d.y-16; });
 
-  text.attr("x", function(d) { return d.x-16; })
+     text.attr("x", function(d) { return d.x-16; })
       .attr("y", function(d) { return d.y+32; });
-
-   //g.attr("transform",function(d) { return "translate(" + d.x + "," + d.y + ")";});
 }
 
 </script>
