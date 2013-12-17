@@ -90,6 +90,11 @@ class Welcome extends CI_Controller {
 
 		$this->load->view('force_directed');
 	}
+
+	public function svg_test(){
+
+		$this->load->view('svg_test');
+	}
 }
 
 /* End of file welcome.php */

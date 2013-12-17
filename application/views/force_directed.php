@@ -8,10 +8,13 @@
 	  stroke: #000;
 	}
 
-	.node {
-	  fill: #ccc;
-	  stroke: #000;
-	}
+	.nodetext {
+    font: 12px sans-serif;
+    -webkit-user-select:none;
+    -moze-user-select:none;
+    stroke-linejoin:bevel;
+    }
+
 	</style>
 </head>
 <body>
@@ -53,7 +56,7 @@ var force = d3.layout.force()
     .nodes(graph.nodes)
     .links(graph.links)
     .size([width, height])
-    .charge(-1500)
+    .charge(-800)
     .on("tick", tick)
     .start();
 
@@ -62,9 +65,23 @@ var link = svg.selectAll(".link")
  .enter().append("line")
    .attr("class", "link");
 
-var node = svg.selectAll(".node")
+var g = svg.selectAll(".node")
    .data(graph.nodes)
- .enter().append("circle")
+ .enter().append("g");
+
+
+ var node = g.append("image")
+ .attr("xlink:href","<?php echo views_path().'/icons/male.png'?>")
+  .attr("width", "32px")
+  .attr("height", "32px");
+
+  var text = g.append("text")
+  		.attr("class","nodetext")
+  		.text(function(d) {return "张某";});
+
+
+
+ /*append("circle")
    .attr("class", "node") 
    .attr("r", 4.5);
 
@@ -75,7 +92,7 @@ var node = svg.selectAll(".node")
       .attr("width", "64px")
       .attr("height", "64px");*/
 
- var g = svg.selectAll("g")
+ /*var g = svg.selectAll("g")
  		.data(graph.nodes)
  		.enter()
  		.attr("class","node");
@@ -94,8 +111,11 @@ function tick() {
       .attr("x2", function(d) { return d.target.x; })
       .attr("y2", function(d) { return d.target.y; });
 
-  node.attr("cx", function(d) { return d.x; })
-      .attr("cy", function(d) { return d.y; });
+  node.attr("x", function(d) { return d.x-16; })
+      .attr("y", function(d) { return d.y-16; });
+
+  text.attr("x", function(d) { return d.x-16; })
+      .attr("y", function(d) { return d.y+32; });
 
    //g.attr("transform",function(d) { return "translate(" + d.x + "," + d.y + ")";});
 }
