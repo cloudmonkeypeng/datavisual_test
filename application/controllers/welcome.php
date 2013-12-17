@@ -81,8 +81,14 @@ class Welcome extends CI_Controller {
 
 		$this->load->model('guarantee_circle');
 
+		//还没加数据呢
 
 		$this->load->view('chord_diagram');
+	}
+
+	public function force_directed(){
+
+		$this->load->view('force_directed');
 	}
 }
 

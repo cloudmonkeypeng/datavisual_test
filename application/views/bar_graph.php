@@ -85,7 +85,7 @@
                })  
                .attr("font-family", "sans-serif")  
                .attr("font-size", "11px")  
-               .attr("fill", "yellow");  
+               .attr("fill", "yellow");
 
 	</script>
 </body>
