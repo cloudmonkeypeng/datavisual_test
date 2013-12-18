@@ -95,6 +95,11 @@ class Welcome extends CI_Controller {
 
 		$this->load->view('svg_test');
 	}
+
+	public function drag_zoom(){
+
+		$this->load->view('drag_zoom');
+	}
 }
 
 /* End of file welcome.php */

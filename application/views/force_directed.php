@@ -10,7 +10,14 @@
     -webkit-user-select:none;
     -moze-user-select:none;
     stroke-linejoin:bevel;
-    }
+  }
+
+  .artBoard {
+    border: 1px solid black; 
+    margin: 0 auto;
+    width: 960px;
+    height: 500px;
+  }
 
 	</style>
 </head>
@@ -42,10 +49,15 @@ var graph = {
   ]
 };
 
+
+var artBoard = d3.select("body").append("div")
+                  .attr("class","artBoard");
+
+
 var width = 960,
     height = 500;
 
-var svg = d3.select("body").append("svg")
+var svg = artBoard.append("svg")
     .attr("width", width)
     .attr("weight", height);
 
@@ -53,7 +65,7 @@ var force = d3.layout.force()
     .nodes(graph.nodes)
     .links(graph.links)
     .size([width, height])
-    .charge(-1800)
+    .charge(-1500)
     .on("tick", tick)
     .start();
 
@@ -84,7 +96,8 @@ var link = svg.selectAll(".link")
 
 var g = svg.selectAll(".node")
    .data(graph.nodes)
- .enter().append("g");
+ .enter().append("g")
+ .call(force.drag);
 
 
 var node = g.append("image")
@@ -98,7 +111,7 @@ var text = g.append("text")
 
 var tempWidth,tempHeight,atan;
 
-// 算法需改进   应该可以改进的！！！   必须可以改进！
+//todo   算法需改进   应该可以改进的！！！   必须可以改进！
 
 function tick() {
 
