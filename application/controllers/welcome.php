@@ -100,6 +100,11 @@ class Welcome extends CI_Controller {
 
 		$this->load->view('drag_zoom');
 	}
+
+	public function draggable_network(){
+
+		$this->load->view('draggable_network');
+	}
 }
 
 /* End of file welcome.php */
