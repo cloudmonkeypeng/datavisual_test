@@ -24,11 +24,15 @@
 			.append("h1")
 			.text("Hello World");
 		
-		var data = [1,2,3,4];
+		var datas = [1,2,3,4];
+
+		d3.select("body")
+			.append("p")
+			.text("test");
 
 		d3.select("body")
 			.selectAll("p")
-			.data(data)
+			.data(datas)
 			.enter()
 			.append("p")
 			.text(function(d){

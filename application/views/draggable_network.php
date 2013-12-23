@@ -30,6 +30,7 @@
 
 </style>
 <body>
+<title>拖拽实验demo</title>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
 
@@ -96,7 +97,7 @@ d3.json("<?php echo views_path().'/data/graph.json';?>", function(error, graph) 
       .attr("cx", function(d) { return d.x; })
       .attr("cy", function(d) { return d.y; })
       .on("mousedown", function(d) {
-        if (!d.selected) { // Don't deselect on shift-drag.
+        if (!d.selected) { // Don't deselect on shift-drag.   //add   shift选择
           if (!shiftKey) node.classed("selected", function(p) { return p.selected = d === p; });
           else d3.select(this).classed("selected", d.selected = true);
         }
